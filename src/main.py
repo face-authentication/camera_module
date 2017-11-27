@@ -2,11 +2,10 @@
 import os, sys
 import argparse
 
-from selenium import webdriver
 from logging import getLogger, StreamHandler, INFO, DEBUG
 
 import commons.functions as common
-import modules.py_camera as py_camera
+import modules.pycamera as py_camera
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -21,11 +20,11 @@ def main(args):
   """
 
   # 設定ファイルをロード
-  env_conf = common.read_config(os.path.abspath(os.path.dirname(__file__)) + "/../" + args.config)
-  module_conf = common.read_config(os.path.abspath(os.path.dirname(__file__)) + "/../" + args.module_name)
+  env_conf = common.read_config(os.path.abspath(os.path.dirname(__file__)) + "/../config/" + args.environments)
+  module_conf = common.read_config(os.path.abspath(os.path.dirname(__file__)) + "/../config/" + args.module_name + ".json")
 
   # ラズパイ用カメラモジュールの処理
-  if args.module_name == "py_camera":
+  if args.module_name == "pycamera":
     py_camera.main(args, env_conf[args.stage], module_conf);
 
 if __name__ == '__main__':
@@ -34,7 +33,7 @@ if __name__ == '__main__':
 
   parser.add_argument("-module_name", "-m", help="please input module_name", required=True)
   parser.add_argument("-program_name", "-p", help="please input program_name", required=False)
-  parser.add_argument("-environments", "-e", help="example ... config/environments.json", default="config/environments.json")
+  parser.add_argument("-environments", "-e", help="example ... environments.json", default="environments.json")
   parser.add_argument("-stage", "-s", help="local, staging, production", default="local")
 
   parser.add_argument("-cascade_path", "-c", help="", default="files/cascades/haarcascade_frontalface_default.xml")

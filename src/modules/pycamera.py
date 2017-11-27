@@ -1,11 +1,29 @@
+# coding: utf-8
+
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import sys, os
 import time
 import cv2
 
+from logging import getLogger, StreamHandler, INFO, DEBUG
+
+logger = getLogger(__name__)
+handler = StreamHandler()
+handler.setLevel(DEBUG)
+logger.setLevel(DEBUG)
+logger.addHandler(handler)
+
 def main(args, env_conf, module_conf):
-  camera = initialize(args, env_conf, module_conf)
+  logger.debug("## %s %s()", __file__, sys._getframe().f_code.co_name)
+  logger.debug(args)
+  logger.debug(env_conf)
+  logger.debug(module_conf)
+  camera, rawCapture = initialize(args, env_conf, module_conf)
+
+  # get cascade
+  cascPath = args.cascade_path
+  faceCascade = cv2.CascadeClassifier(cascPath)
 
   # allow the camera to warmup
   time.sleep(0.1)
@@ -47,11 +65,10 @@ def initialize(args, env_conf, module_conf):
   """
 
   camera = PiCamera()
-  camera.resolution = (module_conf.window.size.x, module_conf.window.size.y)
-  camera.framerate = module_conf.camera.framerate
-  rawCapture = PiRGBArray(camera, size=(module_conf.window.size.x, module_conf.window.size.y))
+  camera.resolution = (module_conf["window"]["size"]["x"], module_conf["window"]["size"]["y"])
+  camera.framerate = module_conf["camera"]["framerate"]
+  rawCapture = PiRGBArray(camera, size=(module_conf["window"]["size"]["x"], module_conf["window"]["size"]["y"]))
 
-  cascPath = args.cascade_path
-  faceCascade = cv2.CascadeClassifier(cascPath)
+  return camera, rawCapture
 
-  return camera
+

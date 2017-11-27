@@ -33,14 +33,13 @@ $ git clone https://github.com/face-authentication/camera_module.git
 ### python実行環境のセットアップ
 ```
 $ cd camera_module
-$ pip install -r ./requirements.txt
+$ sudo pip install -r ./requirements.txt
 ```
 
 ### 実行
 ```
-$ python src/main.py -m py_camera
+$ python src/main.py -m pycamera 
 ```
-
 
 ## 参考
 [RaspberryPiのカメラモジュールV2から流れるストリーミングを、Pythonを使って顔認識するまで](http://walking-succession-falls.com/2017/06/25/raspberrypi%E3%81%AE%E3%82%AB%E3%83%A1%E3%83%A9%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%ABv2%E3%81%8B%E3%82%89%E6%B5%81%E3%82%8C%E3%82%8B%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3/)
@@ -50,3 +49,4 @@ $ python src/main.py -m py_camera
 
 ## Author
 [m.hirasaki](https://github.com/hirasaki1985)
+

@@ -1,0 +1,12 @@
+{
+  "local" : {
+    "url": "http://192.168.33.10/",
+    "file_sample": "files/file_sample.txt",
+  },
+  "staging" : {
+    "url": "http://stg_jsample.co.jp/",
+    "file_sample": "files/file_sample.txt",
+  },
+  "production" : {
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "window" : {
+    "size" : {
+      "x":640,
+      "y":480
+    }
+  },
+  "camera" : {
+    "framerate": 32
+  }
+}
+
